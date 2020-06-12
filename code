@@ -1,0 +1,27 @@
+int temp = 0
+// the setup function runs one when you press reset or powee the board
+void setup ()
+{
+    pinMode(A0, INPUT)
+    Serial.begin(9600); 
+    pinMode(2, OUTPUT); // red light
+    pinMode(3, OUTPUT);  // green light
+ }
+// the loop function run over and over again forever
+void loop()
+{
+temp = map(((analogRead(A0) - 20) * 3.04), 0, 1023, -40, 125);
+ Serial.print(temp);
+ Serial.print(" C, ");
+  
+  
+  if ( temp <= 25){
+   digitalWrite(3, HIGH); // Turns on the green led
+   digitalWrite(2, LOW);
+  }
+  if (temp > 25){
+   digitalWrite(2, HIGH); // Turns on the red led
+   digitalWrite(3, LOW); 
+  }
+  delay(500);   
+} 
